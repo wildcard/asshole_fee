@@ -1,0 +1,9 @@
+#server
+pip install flask
+#speech
+pip install pyaudio
+pip install SpeechRecognition
+#OCR
+pip install Pillow
+pip install pytesseract
+https://code.google.com/p/tesseract-ocr/downloads/list

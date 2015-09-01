@@ -7,3 +7,5 @@ pip install SpeechRecognition
 pip install Pillow
 pip install pytesseract
 https://code.google.com/p/tesseract-ocr/downloads/list
+#Capturing image from webcam
+pip install pygame

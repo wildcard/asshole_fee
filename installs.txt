@@ -9,3 +9,7 @@ pip install pytesseract
 https://code.google.com/p/tesseract-ocr/downloads/list
 #Capturing image from webcam
 pip install pygame
+
+#for ubuntu:
+sudo apt-get install tesseract-ocr
+sudo apt-get install python-pygame

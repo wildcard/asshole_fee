@@ -1,0 +1,52 @@
+@font-face {
+    font-family: number_plate;
+    src: url('http://paweldecowski.com/fonts/number_plate.ttf');
+}
+
+body {
+    font-size: 100px;
+    line-height: 100px;
+    margin: 100px;
+}
+
+.reg {
+    background-color: #ec0;
+    background: -webkit-linear-gradient(#ec0, #ca0);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.75);
+    font-family: number_plate;
+    display: inline-block;
+    padding: 0 50px 0 100px;
+    position: relative;
+}
+
+.reg::before {
+    background-color: #24c;
+    background: -webkit-linear-gradient(#24c, #02a);
+    border-radius: 4px 0 0 4px;
+    content: 'GB';
+    color: #ec0;
+    font-family: sans-serif;
+    font-size: 20px;
+    line-height: 40px;
+    position: absolute;
+    padding-top: 50px;
+    left: 5px;
+    top: 5px;
+    text-align: center;
+    width: 50px;
+}
+
+.reg::after {
+    background-color: rgba(255,255,255,.25);
+    color: #ec0;
+    content: "\25CC";
+    font-family: sans-serif;
+    font-size: 32px;
+    left: 0;
+    height: 50%;
+    line-height: 70px;
+    width: 100%;
+    padding-left: 14px;
+    position: absolute;
+}

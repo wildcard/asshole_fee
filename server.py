@@ -2,14 +2,23 @@
 #TODO: list fee per user
 #TODO: pay and reset debt
 
-from flask import Flask
+import json
+from flask import Flask, request, send_from_directory
 app = Flask(__name__)
 
 db = {}
 
+@app.route('/html/<path:path>')
+def send_js(path):
+    return send_from_directory('html', path)
+
 @app.route('/')
 def index():
-    return 'Nothing to see here, carry on...'
+    return send_from_directory('html', 'index.html')
+	
+@app.route('/list')
+def list_all():
+    return json.dumps(db)
 
 @app.route('/asshole/<lpr>')
 def fine_as_asshole(lpr):

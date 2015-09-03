@@ -13,3 +13,4 @@ pip install pygame
 #for ubuntu:
 sudo apt-get install tesseract-ocr
 sudo apt-get install python-pygame
+apt-get install python-pyaudio

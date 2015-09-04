@@ -1,4 +1,5 @@
 import time
+import urllib2
 #should be run from: C:\Program Files\Tesseract-OCR
 from PIL import Image
 import pytesseract
@@ -8,6 +9,7 @@ import speech_recognition as sr
 import pygame.camera
 
 iteration_count=1
+server="http://127.0.0.1:5000"
 curses=['bitch','beach','f***','c***']
 for i in range(iteration_count):
     points=0
@@ -29,5 +31,6 @@ for i in range(iteration_count):
         print("Could not request results from Google Speech Recognition service")
     points=len([c for c in curses if speech.find(c)>-1])
     print (points)
-    #TODO: If speech contains curse-words, update server with license plate and words
+	#TODO: send data to server, should be something like this:
+    #urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=ocr)).read()
     time.sleep(1)

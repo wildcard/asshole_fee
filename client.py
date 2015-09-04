@@ -8,16 +8,20 @@ import speech_recognition as sr
 
 import pygame.camera
 
+
+
 iteration_count=1
 server="http://127.0.0.1:5000"
 curses=['bitch','beach','f***','c***']
 for i in range(iteration_count):
-    points=0
+    points = 0
+
     #TODO: capture image from webcam
-    ocr=pytesseract.image_to_string(Image.open(r"plate.jpg"))
+    ocr=pytesseract.image_to_string(Image.open(r"plates/plate1.jpg"))
     print (ocr)
     # obtain audio from the microphone
     r = sr.Recognizer()
+
     with sr.Microphone() as source:
         print("Say something!")
         audio = r.listen(source)

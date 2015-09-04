@@ -11,7 +11,7 @@ def detect(image):
     res_num = lines[0][8:10]
 
     licence_plate = lines[1][6:12] #can we have bigger licence plate??
-    accuracy = lines[1][26:]
+    accuracy = lines[1][24:]
 
     print 'Best results (out of %s) with accuracy %s is: %s' %(res_num, accuracy, licence_plate)
 

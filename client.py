@@ -11,14 +11,15 @@ import speech_recognition as sr
 import pygame.camera
 
 def detect_lpr(image):
-	"""Returns the license plate number from an image"""
+    # #Returns the license plate number from an image
     cmd = 'alpr -c eu %s' % image
+    print cmd
     out = subprocess.check_output([cmd], shell=True, env=os.environ)
     lines = out.splitlines()
     res_num = lines[0][8:10]
     license_plate = lines[1][6:12] #can we have bigger licence plate??
     accuracy = lines[1][24:]
-	return license_plate
+    return license_plate
 
 iteration_count=1
 server="http://127.0.0.1:5000"
@@ -28,7 +29,7 @@ for i in range(iteration_count):
 
     #TODO: capture image from webcam
     #lpr=pytesseract.image_to_string(Image.open(r"plates/plate1.jpg"))
-	lpr=detect_lpr(r"plates/plate1.jpg")
+    lpr=detect_lpr(r"plates/plate.jpg")
     print (lpr)
     # obtain audio from the microphone
     r = sr.Recognizer()

@@ -1,6 +1,6 @@
 @font-face {
     font-family: number_plate;
-    src: url('http://paweldecowski.com/fonts/number_plate.ttf');
+    src: url('/html/number_plate.ttf');
 }
 
 body {
@@ -49,4 +49,39 @@ body {
     width: 100%;
     padding-left: 14px;
     position: absolute;
+}
+
+.stopsign {
+    background: #c00; /* fallback */
+	color: #fff;
+    background:
+        -moz-linear-gradient(45deg,  transparent 20px, #c00 20px),
+        -moz-linear-gradient(135deg, transparent 20px, #c00 20px),
+        -moz-linear-gradient(225deg, transparent 20px, #c00 20px),
+        -moz-linear-gradient(315deg, transparent 20px, #c00 20px);
+    background:
+        -o-linear-gradient(45deg,  transparent 20px, #c00 20px),
+        -o-linear-gradient(135deg, transparent 20px, #c00 20px),
+        -o-linear-gradient(225deg, transparent 20px, #c00 20px),
+        -o-linear-gradient(315deg, transparent 20px, #c00 20px);
+    background:
+        -webkit-linear-gradient(45deg,  transparent 20px, #c00 20px),
+        -webkit-linear-gradient(135deg, transparent 20px, #c00 20px),
+        -webkit-linear-gradient(225deg, transparent 20px, #c00 20px),
+        -webkit-linear-gradient(315deg, transparent 20px, #c00 20px);
+
+    background-position: bottom left, bottom right, top right, top left;
+    -moz-background-size: 50% 50%;
+    -webkit-background-size: 50% 50%;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+	
+	height: 100px;
+	width: 100px;
+}
+
+.stopword {
+	font-size: 80px;
+	padding: 20px 20px 20px 20px;
+	text-align: justify;
 }

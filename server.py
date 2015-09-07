@@ -3,7 +3,7 @@
 #TODO: pay and reset debt
 
 import json
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory,redirect
 app = Flask(__name__)
 
 db = {}
@@ -28,6 +28,10 @@ def fine_as_asshole(lpr):
     else:
         db[lpr]=1
     return str(db[lpr])
+
+@app.route('/checkout/<lpr>')
+def checkout(lpr):
+	return redirect('https://www.paypal.com/signin/')
 
 if __name__ == '__main__':
     app.debug = True

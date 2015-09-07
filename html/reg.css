@@ -1,15 +1,18 @@
-@font-face {
+@font-face
+{
     font-family: number_plate;
     src: url('/html/number_plate.ttf');
 }
 
-body {
+body
+{
     font-size: 100px;
     line-height: 100px;
     margin: 100px;
 }
 
-.reg {
+.reg
+{
     background-color: #ec0;
     background: -webkit-linear-gradient(#ec0, #ca0);
     border-radius: 6px;
@@ -20,7 +23,8 @@ body {
     position: relative;
 }
 
-.reg::before {
+.reg::before
+{
     background-color: #24c;
     background: -webkit-linear-gradient(#24c, #02a);
     border-radius: 4px 0 0 4px;
@@ -37,7 +41,8 @@ body {
     width: 50px;
 }
 
-.reg::after {
+.reg::after
+{
     background-color: rgba(255,255,255,.25);
     color: #ec0;
     content: "\25CC";
@@ -51,7 +56,8 @@ body {
     position: absolute;
 }
 
-.stopsign {
+.stopsign
+{
     background: #c00; /* fallback */
 	color: #fff;
     background:
@@ -80,8 +86,16 @@ body {
 	width: 100px;
 }
 
-.stopword {
+.stopword
+{
 	font-size: 80px;
 	padding: 20px 20px 20px 20px;
 	text-align: justify;
+}
+
+.checkout
+{
+	padding-top: 20px;
+	margin: 10px 10px 10px 10px;
+	text-align: center;
 }

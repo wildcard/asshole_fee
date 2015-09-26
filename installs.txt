@@ -28,3 +28,5 @@ https://github.com/openalpr/openalpr
 
 #python integrtion:
 https://github.com/openalpr/openalpr/wiki/Integrating-OpenALPR
+
+

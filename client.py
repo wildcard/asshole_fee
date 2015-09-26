@@ -1,5 +1,5 @@
 import time
-# import urllib2
+import urllib2
 import subprocess
 import os
 #should be run from: C:\Program Files\Tesseract-OCR
@@ -7,6 +7,8 @@ import os
 # import pytesseract
 
 import speech_recognition as sr
+import pygame.camera
+import pygame.image
 
 # import pygame.camera
 
@@ -31,16 +33,37 @@ def detect_lpr(image):
     # accuracy = lines[1][24:]
     return license_plate
 
-iteration_count = 1
+def capture_image(path):
+    # pygame.camera.init()
+    # cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
+    # cam.start()
+    img = cam.get_image()
+    pygame.image.save(img, path)
+    # pygame.camera.quit()
+
+iteration_count = 1000
 server = 'http://127.0.0.1:5000'
 curses = ['bitch', 'beach', 'f***', 'c***']
+
+
+pygame.camera.init()
+cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
+cam.start()
+
+
 for i in range(iteration_count):
     points = 0
 
     #TODO: capture image from webcam
     #lpr=pytesseract.image_to_string(Image.open(r"plates/plate1.jpg"))
-    lpr = detect_lpr(r"plates/plate8.jpg")
+    path = 'plates/new_plate.jpg'
+    print i
+    capture_image(path)
+
+    # lpr = detect_lpr(r"plates/plate7.jpg")
+    lpr = detect_lpr(path)
     print (lpr)
+
     # obtain audio from the microphone
     r = sr.Recognizer()
 
@@ -58,5 +81,7 @@ for i in range(iteration_count):
     points = len([c for c in curses if speech.find(c) > - 1])
     print (points)
     #TODO: send data to server, should be something like this:
-    #urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
+    urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
     time.sleep(1)
+
+pygame.camera.quit()

@@ -84,4 +84,5 @@ for i in range(iteration_count):
     urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
     time.sleep(1)
 
+cam.stop()
 pygame.camera.quit()

@@ -13,24 +13,22 @@ import pygame.image
 # import pygame.camera
 
 
-def detect_lpr(image):
+def detect_lpr(image, us=True):
     # #Returns the license plate number from an image
-    #try running EU mode
-    cmd_eu = 'alpr -c eu %s' % image
-    out = subprocess.check_output([cmd_eu], shell=True, env=os.environ)
-    if 'No license plates found' in out:
-        #try running US mode
-        cmd_us = 'alpr -c us %s' % image
-        out = subprocess.check_output([cmd_us], shell=True, env=os.environ)
+    cmd = ''
+    if us:
+        cmd = 'alpr -c us %s' % image
+    else:
+        cmd = 'alpr -c eu %s' % image
+    out = subprocess.check_output([cmd], shell=True, env=os.environ)
 
     if 'No license plates found' in out:
         return 'No license plates found'
 
     lines = out.splitlines()
-    # res_num = lines[0][8:10]
-    #can we have bigger licence plate??
     license_plate = lines[1][6:12]
-    # accuracy = lines[1][24:]
+    if us and len(license_plate.strip()) != 6:
+        return 'No license plates found'
     return license_plate
 
 def capture_image(path):
@@ -62,27 +60,31 @@ for i in range(iteration_count):
 
     # lpr = detect_lpr(r"plates/plate7.jpg")
     lpr = detect_lpr(path)
+    if lpr != 'No license plates found':
+        print (lpr)
+        break
     print (lpr)
 
-    # obtain audio from the microphone
-    r = sr.Recognizer()
+# obtain audio from the microphone
+r = sr.Recognizer()
 
-    with sr.Microphone() as source:
-        print('Say something!')
-        audio = r.listen(source)
-    speech = ''
-    try:
-        speech = r.recognize_google(audio)
-        print (speech)
-    except sr.UnknownValueError:
-        print('Google Speech Recognition could not understand audio')
-    except sr.RequestError:
-        print('Could not request results from Google Speech Recognition service')
-    points = len([c for c in curses if speech.find(c) > - 1])
-    print (points)
-    #TODO: send data to server, should be something like this:
-    urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
-    time.sleep(1)
+with sr.Microphone() as source:
+    print('Say something!')
+    audio = r.listen(source)
+    print('Done listening!')
+speech = ''
+try:
+    speech = r.recognize_google(audio)
+    print (speech)
+except sr.UnknownValueError:
+    print('Google Speech Recognition could not understand audio')
+except sr.RequestError:
+    print('Could not request results from Google Speech Recognition service')
+points = len([c for c in curses if speech.find(c) > - 1])
+print (points)
+#TODO: send data to server, should be something like this:
+urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
+time.sleep(1)
 
 cam.stop()
 pygame.camera.quit()

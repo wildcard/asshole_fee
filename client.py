@@ -1,16 +1,11 @@
-import time
 import urllib2
 import subprocess
 import os
-#should be run from: C:\Program Files\Tesseract-OCR
-# from PIL import Image
-# import pytesseract
 
 import speech_recognition as sr
 import pygame.camera
 import pygame.image
-
-# import pygame.camera
+import colorama
 
 
 def detect_lpr(image, us=True):
@@ -32,59 +27,57 @@ def detect_lpr(image, us=True):
     return license_plate
 
 def capture_image(path):
-    # pygame.camera.init()
-    # cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
-    # cam.start()
     img = cam.get_image()
     pygame.image.save(img, path)
-    # pygame.camera.quit()
 
 iteration_count = 1000
 server = 'http://127.0.0.1:5000'
-curses = ['bitch', 'beach', 'f***', 'c***']
+curses = ['bitch', 'beach', 'biatch', 'shit', 'ass', '*']
 
 
 pygame.camera.init()
 cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
 cam.start()
+colorama.init()
 
 
 for i in range(iteration_count):
     points = 0
 
-    #TODO: capture image from webcam
-    #lpr=pytesseract.image_to_string(Image.open(r"plates/plate1.jpg"))
     path = 'plates/new_plate.jpg'
     print i
     capture_image(path)
 
-    # lpr = detect_lpr(r"plates/plate7.jpg")
     lpr = detect_lpr(path)
     if lpr != 'No license plates found':
-        print (lpr)
+        print colorama.Fore.YELLOW + lpr
+        print colorama.Fore.WHITE
         break
-    print (lpr)
+
+    print colorama.Fore.RED + lpr
+    print colorama.Fore.WHITE
 
 # obtain audio from the microphone
+print colorama.Fore.BLACK
 r = sr.Recognizer()
 
 with sr.Microphone() as source:
+    print colorama.Fore.WHITE
     print('Say something!')
     audio = r.listen(source)
     print('Done listening!')
 speech = ''
 try:
     speech = r.recognize_google(audio)
-    print (speech)
+    print colorama.Fore.GREEN + speech + colorama.Fore.WHITE
 except sr.UnknownValueError:
     print('Google Speech Recognition could not understand audio')
 except sr.RequestError:
     print('Could not request results from Google Speech Recognition service')
 points = len([c for c in curses if speech.find(c) > - 1])
-print (points)
-#TODO: send data to server, should be something like this:
-urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
-time.sleep(1)
+# print (points)
+if points > 0:
+    urllib2.urlopen('{s}/asshole/{l}'.format(s=server,l=lpr)).read()
 
 cam.stop()
 pygame.camera.quit()

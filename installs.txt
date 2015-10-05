@@ -9,6 +9,7 @@ pip install pytesseract
 https://code.google.com/p/tesseract-ocr/downloads/list
 #Capturing image from webcam
 pip install pygame
+pip install colorama
 
 #for ubuntu:
 #installs:

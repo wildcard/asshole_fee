@@ -15,7 +15,7 @@ def send_js(path):
 @app.route('/')
 def index():
     return send_from_directory('html', 'index.html')
-	
+
 @app.route('/list')
 def list_all():
     return json.dumps(db)

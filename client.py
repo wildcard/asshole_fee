@@ -50,12 +50,10 @@ for i in range(iteration_count):
 
     lpr = detect_lpr(path)
     if lpr != 'No license plates found':
-        print colorama.Fore.YELLOW + lpr
-        print colorama.Fore.WHITE
+        print colorama.Fore.YELLOW + lpr + colorama.Fore.WHITE
         break
 
-    print colorama.Fore.RED + lpr
-    print colorama.Fore.WHITE
+    print colorama.Fore.RED + lpr + colorama.Fore.WHITE
 
 # obtain audio from the microphone
 print colorama.Fore.BLACK

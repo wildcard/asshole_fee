@@ -7,6 +7,7 @@ import pygame.camera
 import pygame.image
 import colorama
 
+DBG = True
 
 def detect_lpr(image, us=True):
     # #Returns the license plate number from an image
@@ -59,19 +60,36 @@ for i in range(iteration_count):
 print colorama.Fore.BLACK
 r = sr.Recognizer()
 
-with sr.Microphone() as source:
-    print colorama.Fore.WHITE
-    print('Say something!')
-    audio = r.listen(source)
-    print('Done listening!')
-speech = ''
-try:
-    speech = r.recognize_google(audio)
+if DBG:
+    x = input()
+    speech =''
+    if x == 1:
+        speech = 'that jerk cut me off'
+    elif x == 2:
+        speech = 'god damn it'
+    elif x == 3:
+        speech = 'bloody hell'
+    else:
+        print colorama.Fore.RED + 'could not recognize' + colorama.Fore.WHITE
+
+
+
     print colorama.Fore.GREEN + speech + colorama.Fore.WHITE
-except sr.UnknownValueError:
-    print('Google Speech Recognition could not understand audio')
-except sr.RequestError:
-    print('Could not request results from Google Speech Recognition service')
+else:
+    with sr.Microphone() as source:
+        print colorama.Fore.WHITE
+        print('Say something!')
+        audio = r.listen(source)
+        print('Done listening!')
+    speech = ''
+    try:
+        speech = r.recognize_google(audio)
+        print colorama.Fore.GREEN + speech + colorama.Fore.WHITE
+    except sr.UnknownValueError:
+        print('Google Speech Recognition could not understand audio')
+    except sr.RequestError:
+        print('Could not request results from Google Speech Recognition service')
+
 points = len([c for c in curses if speech.find(c) > - 1])
 # print (points)
 if points > 0:

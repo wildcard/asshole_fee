@@ -12,7 +12,7 @@ venv/
 env/
 build/
 develop-eggs/
-dist/
+#dist/
 downloads/
 eggs/
 lib/
@@ -102,7 +102,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-#bower_components/
+bower_components/
 node_modules/
 
 # remove node detection for heroku

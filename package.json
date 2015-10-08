@@ -4,6 +4,9 @@
   "description": "Tracking jerks on road and fining them when entering festivals or parking lots.",
   "main": "index.js",
   "scripts": {
+    "install": "npm && gulp",
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "start": "npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

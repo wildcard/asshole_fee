@@ -12,9 +12,9 @@ db = {}
 def serv_static_src(path):
     return send_from_directory('src', path)
 
-@app.route('/bower_components/<path:path>')
+@app.route('/lib/<path:path>')
 def serv_bower(path):
-    return send_from_directory('bower_components', path)
+    return send_from_directory('lib', path)
 
 @app.route('/')
 def index():

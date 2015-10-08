@@ -15,7 +15,7 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
@@ -104,3 +104,6 @@ $RECYCLE.BIN/
 
 bower_components/
 node_modules/
+
+# remove node detection for heroku
+package.json

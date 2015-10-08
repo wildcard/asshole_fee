@@ -13,23 +13,23 @@ pip install pyaudio
 pip install SpeechRecognition
 
 ##OCR
-```pip install Pillow
-pip install pytesseract
-https://code.google.com/p/tesseract-ocr/downloads/list```
+```pip install Pillow```
+```pip install pytesseract```
+https://code.google.com/p/tesseract-ocr/downloads/list
 
 ##Capturing image from webcam
-```pip install pygame
-pip install colorama```
+```pip install pygame```
+```pip install colorama```
 
 ###for ubuntu:
 ####installs:
-```sudo apt-get install tesseract-ocr
-sudo apt-get install python-pygame
-apt-get install python-pyaudio```
+```sudo apt-get install tesseract-ocr```
+```sudo apt-get install python-pygame```
+```apt-get install python-pyaudio```
 
 ##running in ubuntu:
-```sudo su
-python client.py```
+```sudo su```
+```python client.py```
 
 
 ##openalpr:

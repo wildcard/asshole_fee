@@ -4,6 +4,7 @@ Drive safely
 ---
 
 #Installs
+pip install -r requirements.txt
 
 ##server
 pip install flask

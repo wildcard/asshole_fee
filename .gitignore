@@ -5,6 +5,8 @@ __pycache__/
 # C extensions
 *.so
 
+venv/
+
 # Distribution / packaging
 .Python
 env/
@@ -99,3 +101,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+bower_components/
+node_modules/

@@ -1,0 +1,32 @@
+{
+  "name": "jerk-app",
+  "version": "1.0.0",
+  "description": "Tracking jerks on road and fining them when entering festivals or parking lots.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urigoren/asshole_fee.git"
+  },
+  "keywords": [
+    "jerkapp",
+    "battlehack"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/urigoren/asshole_fee/issues"
+  },
+  "homepage": "https://github.com/urigoren/asshole_fee#readme",
+  "devDependencies": {
+    "babel-loader": "^5.3.2",
+    "gulp": "^3.9.0",
+    "gulp-bower": "0.0.10",
+    "gulp-inject": "^3.0.0",
+    "main-bower-files": "^2.9.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
+  }
+}

@@ -8,13 +8,17 @@ app = Flask(__name__)
 
 db = {}
 
-@app.route('/html/<path:path>')
-def send_js(path):
-    return send_from_directory('html', path)
+@app.route('/src/<path:path>')
+def serv_static_src(path):
+    return send_from_directory('src', path)
+
+@app.route('/bower_components/<path:path>')
+def serv_bower(path):
+    return send_from_directory('bower_components', path)
 
 @app.route('/')
 def index():
-    return send_from_directory('html', 'index.html')
+    return send_from_directory('src', 'index.html')
 
 @app.route('/list')
 def list_all():

@@ -1,0 +1,25 @@
+{
+  "name": "jerkApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/urigoren/asshole_fee",
+  "authors": [
+    "Yakov Kadosh <kobi.kadosh@gmail.com>"
+  ],
+  "description": "Tracking jerks on road and fining them when entering festivals or parking lots.",
+  "keywords": [
+    "battlehack",
+    "roadrage",
+    "jerkapp"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "~0.97.1"
+  }
+}

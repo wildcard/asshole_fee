@@ -1,0 +1,7 @@
+pip install flask
+pip install pyaudio
+pip install SpeechRecognition
+pip install Pillow
+pip install pytesseract
+pip install pygame
+pip install colorama

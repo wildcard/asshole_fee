@@ -1,41 +1,41 @@
-# asshole_fee
+# asshole fee
 Drive safely
 
 ---
 
 #Installs
 
-#server
+##server
 pip install flask
 
-#speech
+##speech
 pip install pyaudio
 pip install SpeechRecognition
 
-#OCR
-pip install Pillow
+##OCR
+```pip install Pillow
 pip install pytesseract
-https://code.google.com/p/tesseract-ocr/downloads/list
+https://code.google.com/p/tesseract-ocr/downloads/list```
 
-#Capturing image from webcam
-pip install pygame
-pip install colorama
+##Capturing image from webcam
+```pip install pygame
+pip install colorama```
 
-#for ubuntu:
-#installs:
-sudo apt-get install tesseract-ocr
+###for ubuntu:
+####installs:
+```sudo apt-get install tesseract-ocr
 sudo apt-get install python-pygame
-apt-get install python-pyaudio
+apt-get install python-pyaudio```
 
-#running in ubuntu:
-sudo su
-python client.py
+##running in ubuntu:
+```sudo su
+python client.py```
 
 
-#openalpr:
+##openalpr:
 #######################3
-#downloads & install:
+##downloads & install:
 https://github.com/openalpr/openalpr
 
-#python integrtion:
+##python integrtion:
 https://github.com/openalpr/openalpr/wiki/Integrating-OpenALPR

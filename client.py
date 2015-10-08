@@ -66,11 +66,11 @@ while True:
     if DBG:
         x = readchar.readchar()
         speech =''
-        if x == '1':
+        if x == 'j':
             speech = 'what a jerk'
-        elif x == '2':
+        elif x == 'g':
             speech = 'god damn it'
-        elif x == '3':
+        elif x == 'b':
             speech = 'bloody hell'
         else:
             print colorama.Fore.RED + 'could not recognize' + colorama.Fore.WHITE

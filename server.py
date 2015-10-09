@@ -6,7 +6,7 @@ import json
 import pusher
 import sendgrid
 import braintree
-from flask import Flask, request, send_from_directory,redirect
+from flask import Flask, request, send_from_directory,redirect, make_response
 
 app = Flask(__name__)
 
@@ -56,7 +56,17 @@ def send_jerk_list(jerkId):
 
 @app.route("/client_token", methods=["GET"])
 def client_token():
-  return json.dumps(braintree.ClientToken.generate())
+    customer_id = request.cookies.get('customer_id')
+    if not(customer_id):
+        result = braintree.Customer.create({
+            "first_name": "Charity",
+            "last_name": "Smith" })
+        customer_id = result.customer.id
+    redirect_to_index = json.dumps(braintree.ClientToken.generate({"customer_id": customer_id}))
+    response = current_app.make_response(redirect_to_index)
+    response.set_cookie('customer_id', result.customer.id)
+    
+    return response
 
 @app.route('/src/<path:path>')
 def serv_static_src(path):
@@ -91,7 +101,11 @@ def fine_as_asshole(lpr):
 @app.route('/checkout/<t>', methods=["POST"])
 def checkout(t):
     nonce = request.form["payment_method_nonce"]
-    lpr = request.form["payment-lpr"]
+
+
+
+
+    # lpr = request.form["payment-lpr"]
     # Use payment method nonce here...
     result = braintree.Transaction.sale({
       "amount": "10.00",
@@ -99,10 +113,10 @@ def checkout(t):
     })
 
     # remove the jerk
-    if lpr in db.keys():
-        del db[lpr]
-    else:
-        del db[0]
+    # if lpr in db.keys():
+    #     del db[lpr]
+    # else:
+    #     del db[0]
 
     return send_from_directory('src', 'index.html')
     #return render_template('paid.html', { 'status' : 'paid', 'jerkId': lpr , 'res': result })

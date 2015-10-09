@@ -38,9 +38,9 @@ openModal: function(){
           </div>
         </td>
         <td>
-          <ul>
+          <div className="ja-score">
             <JerkRank score={this.props.jerk.badrep} />
-          </ul>
+          </div>
         </td>
         <td>
           <button className="btn waves-effect waves-light modal-trigger" href="#modal1" onClick={this.openModal}>

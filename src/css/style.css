@@ -44,6 +44,9 @@ p {
     top: 0;
   }
 }
+.ja-score{
+  font-size: 3em;
+}
 
 .icon-block {
   padding: 0 15px;

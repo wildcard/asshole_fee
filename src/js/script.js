@@ -18,7 +18,14 @@ function update_status() {
 }
 //main
 jQuery(document).ready(function() {
-	$('.modal-trigger').leanModal();
+	$('.modal-trigger').leanModal({
+		complete: function() {
+
+			var lt =  $('#payment-lpr').val();
+			var triggered = window.channel.trigger('update-jerks', { jerkId: lt });
+			//alert('Closed');
+		}
+	});
   //update_status();
 	setToken();
 });
@@ -28,7 +35,23 @@ function setToken(argument) {
   jQuery.getJSON('/client_token', function(data) {
 
     braintree.setup(data, "dropin", {
-      container: "payment-form"
+      container: "payment-form",
+			onPaymentMethodReceived: function(nonce, type, detalis){
+
+
+				$.ajax({
+		      url: '/list',
+		      dataType: 'json',
+		      cache: false,
+		      success: function(data) {
+						var triggered = window.channel.trigger('update-jerks', data);
+		      },
+		      error: function(xhr, status, err) {
+		        console.error(this.props.url, status, err.toString());
+		      }
+		    });
+
+			}
     });
   });
 

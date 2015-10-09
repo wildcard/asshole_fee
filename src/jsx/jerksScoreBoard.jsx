@@ -1,15 +1,17 @@
 var JerkScore = React.createClass({
-  render : function(){
-    return (<span key={this.props.key}>💩</span>);
+  render: function() {
+    return (
+      <span key={this.props.key}>💩</span>
+    );
   }
 });
 
 var JerkRank = React.createClass({
-  getCount: function(score){
-return score;
+  getCount: function(score) {
+    return score;
 
   },
-  render : function(){
+  render: function() {
     var score = this.props.score;
 
     var indents = [];
@@ -17,18 +19,18 @@ return score;
       indents.push(<JerkScore key={i}/>);
     }
     return (
-       <div>
+      <div>
         {indents}
-       </div>
+      </div>
     );
   }
 });
 
 var JerkRow = React.createClass({
-openModal: function(){
-  $('#modal1').openModal();
-  $('#payment-form').val(this.props.jerk.licensePlate);
-},
+  openModal: function() {
+    $('#modal1').openModal();
+    $('#payment-lpr').val(this.props.jerk.licensePlate);
+  },
   render: function() {
     return (
       <tr>
@@ -39,7 +41,7 @@ openModal: function(){
         </td>
         <td>
           <div className="ja-score">
-            <JerkRank score={this.props.jerk.badrep} />
+            <JerkRank score={this.props.jerk.badrep}/>
           </div>
         </td>
         <td>
@@ -56,7 +58,7 @@ var JerksTable = React.createClass({
   render: function() {
     var rows = [];
     this.props.jerks.forEach(function(jerk) {
-        rows.push(<JerkRow jerk={jerk} key={jerk.licensePlate} />);
+        rows.push(<JerkRow jerk={jerk} key={jerk.licensePlate}/>);
       });
 
     return (
@@ -77,7 +79,7 @@ var JerksTable = React.createClass({
 var JerksScoreBoard = React.createClass({
   getInitialState: function() {
     return {
-      data : []
+      data: []
     }
   },
   loadFromServer: function() {
@@ -107,44 +109,83 @@ var JerksScoreBoard = React.createClass({
         });
       });
 
-      return jerks_arr;
+    return jerks_arr;
   },
   componentDidMount: function() {
     this.loadFromServer();
     var self = this;
     // sub to pusher
-    var channel = window.pusher.subscribe('test_channel');
-			channel.bind('a_jerk', function(data) {
-      console.log(data);
+    window.channel = window.pusher.subscribe('test_channel');
+    channel.bind('a_jerk', function(data) {
+        console.log(data);
 
-      var newState = [];
-        var itemIndex = _.findIndex(self.state.data, function(obj) { return obj.licensePlate === data.jerkId  });
-
-      if(itemIndex > 0){
-        //var item = _.find(self.state.data, function(o){ retrun data.jerkId === o.licensePlate });
-        console.log("returning jerk", itemIndex);
-        var updatedJerk = self.state.data[itemIndex] = { licensePlate: data.jerkId, badrep: data.score };
-
-        newState = { data: self.state.data };
-        console.log(self.state);
-      } else {
-        newState = React.addons.update(self.state, {
-              data : {
-                $push : [{
-                  licensePlate: data.jerkId,
-                  badrep: data.score}]
-              }
+        var newState = [];
+        var itemIndex = _.findIndex(self.state.data, function(obj) {
+            return obj.licensePlate === data.jerkId
           });
-      }
+
+        if (itemIndex > 0) {
+          //var item = _.find(self.state.data, function(o){ retrun data.jerkId === o.licensePlate });
+          console.log("returning jerk", itemIndex);
+          var updatedJerk = self.state.data[itemIndex] = {
+            licensePlate: data.jerkId,
+            badrep: data.score
+          };
+
+          newState = {
+            data: self.state.data
+          };
+          console.log(self.state);
+        } else {
+          newState = React.addons
+            .update(self.state, {
+              data: {
+                $push: [
+                  {
+                    licensePlate: data.jerkId,
+                    badrep: data.score
+                  }
+                ]
+              }
+            });
+        }
 
         self.setState(newState);
-		});
+      });
+
+    channel.bind('update-jerks', function(data) {
+      self.setState({
+        data: self.parseDataToJerks(data)
+        //data: data
+      });
+    });
+
+      channel.bind('delete-jerk', function(data) {
+        var newState = [];
+
+        var itemIndex = _.findIndex(self.state.data, function(obj) {
+            return obj.licensePlate === data.jerkId
+          });
+
+          if (itemIndex > 0) {
+            delete self.state.data[itemIndex]
+          }
+
+          newState = {
+            data: self.state.data
+          };
+
+          self.setState(newState);
+    });
+
   },
-render: function(){
+  render: function() {
     //var jerksData = this.parseDataToJerks(this.state.data);
     var jerksData = this.state.data;
-    return(<JerksTable jerks = { jerksData } />);
+    return (
+      <JerksTable jerks= { jerksData }/>
+    );
   }
 });
 
-ReactDOM.render(<JerksScoreBoard url="/list" />, document.getElementById('shame-score'));
+ReactDOM.render(<JerksScoreBoard url="/list"/>, document.getElementById('shame-score'));

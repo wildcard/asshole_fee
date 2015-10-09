@@ -56,17 +56,17 @@ def send_jerk_list(jerkId):
 
 @app.route("/client_token", methods=["GET"])
 def client_token():
-    customer_id = request.cookies.get('customer_id')
-    if not(customer_id):
-        result = braintree.Customer.create({
-            "first_name": "Charity",
-            "last_name": "Smith" })
-        customer_id = result.customer.id
-    redirect_to_index = json.dumps(braintree.ClientToken.generate({"customer_id": customer_id}))
-    response = current_app.make_response(redirect_to_index)
-    response.set_cookie('customer_id', result.customer.id)
-    
-    return response
+    # customer_id = request.cookies.get('customer_id')
+    # if not(customer_id):
+        # result = braintree.Customer.create({
+        #     "first_name": "Charity",
+        #     "last_name": "Smith" })
+        # customer_id = result.customer.id
+    # redirect_to_index = json.dumps(braintree.ClientToken.generate({"customer_id": customer_id}))
+    # response = current_app.make_response(redirect_to_index)
+    # response.set_cookie('customer_id', result.customer.id)
+
+    return json.dumps(braintree.ClientToken.generate())
 
 @app.route('/src/<path:path>')
 def serv_static_src(path):
@@ -82,6 +82,11 @@ def index():
 
 @app.route('/list')
 def list_all():
+    return json.dumps(db)
+
+@app.route('/clean')
+def list_clr():
+    db = {}
     return json.dumps(db)
 
 @app.route('/asshole/<lpr>')
@@ -102,7 +107,7 @@ def fine_as_asshole(lpr):
 def checkout(t):
     nonce = request.form["payment_method_nonce"]
 
-
+    print (nonce)
 
 
     # lpr = request.form["payment-lpr"]

@@ -14,9 +14,9 @@ db = {}
 
 braintree.Configuration.configure(
     braintree.Environment.Sandbox,
-    'n86hmhhx69hkpcqv',
-    's9w2ftqd2t23gwh6',
-    'e7558c66e18d57e73c0d44d3be4d3081'
+    'ffdqc9fyffn7yn2j',
+    'qj65nndbnn6qyjkp',
+    'a3de3bb7dddf68ed3c33f4eb6d9579ca'
 )
 
 p = pusher.Pusher(
@@ -96,6 +96,9 @@ def checkout(lpr):
       "amount": "10.00",
       "payment_method_nonce": nonce
     })
+
+    # remove the jerk
+    del db[lpr]
 
     # return send_from_directory('src', 'index.html')
     return render_template('paid.html', { 'status' : 'paid', 'jerkId': lpr , 'res': result })

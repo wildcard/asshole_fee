@@ -104,7 +104,6 @@ def checkout(t):
     else:
         del db[0]
 
-
     return send_from_directory('src', 'index.html')
     #return render_template('paid.html', { 'status' : 'paid', 'jerkId': lpr , 'res': result })
     # return json.dumps({ 'status' : 'paid', 'res': result })

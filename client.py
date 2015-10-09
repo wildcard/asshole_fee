@@ -35,7 +35,7 @@ def capture_image(path):
     pygame.image.save(img, path)
 
 iteration_count = 1000
-server = 'http://127.0.0.1:5000'
+server = 'https://jerkapp.herokuapp.com/'
 curses = ['bitch', 'beach', 'biatch', 'shit', 'ass', '*', 'damn', 'bloody', 'jerk']
 
 

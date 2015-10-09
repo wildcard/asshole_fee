@@ -11,15 +11,38 @@
 	<!--Import materialize.css-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
 
-	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 	<!-- inject:css -->
 	<!-- endinject -->
 
 	<!-- Asshole fee -->
 	<!-- <link rel="stylesheet" type="text/css" href="html/reg.css"> -->
 	<link href="src/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="src/css/plate.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+	<script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+	<script>
+		// Enable pusher logging - don't include this in production
+		Pusher.log = function(message) {
+			if (window.console && window.console.log) {
+				window.console.log(message);
+			}
+		};
+
+		window.pusher = new Pusher('a19117ca2435e0159c2a', {
+			encrypted: true,
+			cluster: 'eu'
+		});
+
+		var channel = window.pusher.subscribe('test_channel');
+			channel.bind('my_event', function(data) {
+			alert(data.message);
+		});
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
 </head>
 
@@ -43,12 +66,12 @@
 			<div class="container">
 				<br>
 				<br>
-				<h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+				<h1 class="header center teal-text text-lighten-2">Stop being a Jerk 😡</h1>
 				<div class="row center">
-					<h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+					<h5 class="header col s12 light">Road rage is an epidemic help us put a stop to it</h5>
 				</div>
 				<div class="row center">
-					<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+					<a href="https://en.wikipedia.org/wiki/Road_rage" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Learn more 📖</a>
 				</div>
 				<br>
 				<br>
@@ -63,71 +86,13 @@
 	<div class="container">
 		<div class="section">
 
-			<div class="row" id="status">
+			<h2 class="center-align">😩The Shame score board 😤</h2>
 
-			</div>
+			<div id="shame-score"></div>
 
-			<table>
-				<thead>
-					<tr>
-						<th data-field="id">Name</th>
-						<th data-field="name">Item Name</th>
-						<th data-field="price">Item Price</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td>$0.87</td>
-					</tr>
-					<tr>
-						<td>Alan</td>
-						<td>Jellybean</td>
-						<td>$3.76</td>
-					</tr>
-					<tr>
-						<td>Jonathan</td>
-						<td>Lollipop</td>
-						<td>$7.00</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<!--   Icon Section   -->
-			<!-- <div class="row">
-				<div class="col s12 m4">
-					<div class="icon-block">
-						<h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-						<h5 class="center">Speeds up development</h5>
-
-						<p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-					</div>
-				</div>
-
-				<div class="col s12 m4">
-					<div class="icon-block">
-						<h2 class="center brown-text"><i class="material-icons">group</i></h2>
-						<h5 class="center">User Experience Focused</h5>
-
-						<p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-					</div>
-				</div>
-
-				<div class="col s12 m4">
-					<div class="icon-block">
-						<h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-						<h5 class="center">Easy to work with</h5>
-
-						<p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-					</div>
-				</div>
-			</div> -->
-
+			<script type="text/babel" src="src/jsx/jerksScoreBoard.jsx"></script>
 		</div>
 	</div>
-
 
 	<div class="parallax-container valign-wrapper">
 		<div class="section no-pad-bot">
@@ -147,7 +112,7 @@
 
 			<div class="row">
 				<div class="col s12 center">
-					<h3><i class="mdi-content-send brown-text"></i></h3>
+					<h3>🙋</h3>
 					<h4>Contact Us</h4>
 					<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices
 						eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam
@@ -179,7 +144,6 @@
 					<h5 class="white-text">Company Bio</h5>
 					<p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
-
 				</div>
 				<div class="col l3 s12">
 					<h5 class="white-text">Settings</h5>
@@ -208,13 +172,34 @@
 		</div>
 	</footer>
 
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<h4>Pay your debt to society</h4>
+
+			<form id="checkout" method="post" action="/checkout/222">
+				<div id="payment-form"></div>
+				<!-- <input type="submit" value="Pay $10"> -->
+				<button class="btn waves-effect waves-light" type="submit" name="action">Pay $10
+					<i class="material-icons right">send</i>
+				</button>
+			</form>
+
+			<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</div>
+
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Compiled and minified CSS -->
-	  <!-- Compiled and minified JavaScript -->
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 
 	<script src="/src/js/init.js"></script>
+	<script src="/src/js/script.js"></script>
 	<!-- inject:js -->
 	<!-- endinject -->
 </body>

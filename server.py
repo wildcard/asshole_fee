@@ -88,9 +88,10 @@ def fine_as_asshole(lpr):
 
     return str(db[lpr])
 
-@app.route('/checkout/<lpr>', methods=["POST"])
-def checkout(lpr):
+@app.route('/checkout/<t>', methods=["POST"])
+def checkout(t):
     nonce = request.form["payment_method_nonce"]
+    lpr = request.form["payment-lpr"]
     # Use payment method nonce here...
     result = braintree.Transaction.sale({
       "amount": "10.00",
@@ -98,10 +99,14 @@ def checkout(lpr):
     })
 
     # remove the jerk
-    del db[lpr]
+    if lpr in db.keys():
+        del db[lpr]
+    else:
+        del db[0]
 
-    # return send_from_directory('src', 'index.html')
-    return render_template('paid.html', { 'status' : 'paid', 'jerkId': lpr , 'res': result })
+
+    return send_from_directory('src', 'index.html')
+    #return render_template('paid.html', { 'status' : 'paid', 'jerkId': lpr , 'res': result })
     # return json.dumps({ 'status' : 'paid', 'res': result })
 
 if __name__ == '__main__':

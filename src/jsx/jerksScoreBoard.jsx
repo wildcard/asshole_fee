@@ -1,49 +1,33 @@
 var JerkScore = React.createClass({
   render : function(){
-    return (<span style={ {fontSize: getSize(this.props.score)} } key={this.props.key}>💩</span>)
+    return (<span key={this.props.key}>💩</span>);
+  }
+});
+
+var JerkRank = React.createClass({
+  getCount: function(score){
+return score;
+
+  },
+  render : function(){
+    var score = this.props.score;
+
+    var indents = [];
+    for (var i = 0; i < this.getCount(score); i++) {
+      indents.push(<JerkScore key={i}/>);
+    }
+    return (
+       <div>
+        {indents}
+       </div>
+    );
   }
 });
 
 var JerkRow = React.createClass({
-  jerkElm: function(score, key = 0){
-    var maxSize = 30;
-    var step = 2;
-    var minSize = 10;
-    var jerkScope = [
-
-    ];
-
-    function getSize(score){
-      var level = Math.floor(score / 10);
-      //var level = score % 10;
-      return minSize;
-    }
-
-    return (<span style={ {fontSize: getSize(score)} } key={key}>💩</span>);
-  },
-
-  jerkRank: function(score){
-    var maxSize = 30;
-    var step = 2;
-    var minSize = 10;
-
-    var jerkScoreArr = [];
-
-    function getCount(score){
-      var level = Math.floor(score / 10);
-      //var level = score % 10;
-      return level;
-    }
-
-    for (var i = 0; i < getCount(score); i++) {
-      jerkScoreArr.push(this.jerkElm(score, i));
-    }
-
-    return (jerkScoreArr);
-  },
 openModal: function(){
   $('#modal1').openModal();
-
+  $('#payment-form').val(this.props.jerk.licensePlate);
 },
   render: function() {
     return (
@@ -54,7 +38,9 @@ openModal: function(){
           </div>
         </td>
         <td>
-          {this.props.jerk.badrep}
+          <ul>
+            <JerkRank score={this.props.jerk.badrep} />
+          </ul>
         </td>
         <td>
           <button className="btn waves-effect waves-light modal-trigger" href="#modal1" onClick={this.openModal}>

@@ -15,7 +15,7 @@ Pillow==6.2.0
 pusher==1.2.3
 pyasn1==0.1.9
 pycparser==2.14
-pyOpenSSL==0.15.1
+pyOpenSSL==17.5.0
 pytesseract==0.1.6
 requests>=2.20.0
 sendgrid==1.5.3
